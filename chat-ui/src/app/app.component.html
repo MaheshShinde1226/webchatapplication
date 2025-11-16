@@ -1,0 +1,36 @@
+<div class="app">
+    <aside class="sidebar">
+        <div class="brand">NovaChat.AI</div>
+        <div class="conversations">➕ New Conversation</div>
+    </aside>
+
+    <main class="main">
+        <header class="header">
+            <p>🤖 AI Assistant: **Ready**</p>
+        </header>
+
+        <section #messagesRef class="messages">
+            <div *ngFor="let m of messages; let i = index" class="message" [ngClass]="m.from">
+
+                <div *ngIf="m.from === 'bot'" class="avatar">AI</div>
+
+                <div class="bubble" [ngClass]="m.from">
+                    <div class="message-text">{{ m.text }}</div>
+
+                    <div *ngIf="m.pending" class="streaming">
+                        Thinking<span *ngFor="let dot of [1, 2, 3]" class="dot-{{dot}}">.</span>
+                    </div>
+                </div>
+
+                <div *ngIf="m.from === 'user'" class="avatar">You</div>
+            </div>
+        </section>
+
+        <div class="input-area">
+            <input [(ngModel)]="prompt" (keydown.enter)="send()" placeholder="Ask me anything..." />
+            <button (click)="send()" [disabled]="loading || !prompt">
+                Send
+            </button>
+        </div>
+    </main>
+</div>

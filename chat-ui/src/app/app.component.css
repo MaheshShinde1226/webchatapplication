@@ -1,0 +1,236 @@
+:root {
+    /* Richer, deeper background */
+    --bg-primary: #0a111f;
+    /* Main container background - subtle contrast */
+    --panel: #0e182c;
+    /* Muted text, less grey, more blueish */
+    --muted: #a6b8d6;
+    /* Primary accent - slightly more vibrant cyan */
+    --accent: #00bcd4;
+    /* Secondary accent for shadows/borders */
+    --border-subtle: rgba(255, 255, 255, 0.08);
+}
+
+/* Update body background to use the primary background */
+body {
+    margin: 0;
+    font-family: 'Inter', Arial, sans-serif;
+    /* Use the new primary background */
+    background: var(--bg-primary);
+    color: #e6eef8;
+    /* Subtle background texture/gradient for depth */
+    background-image: radial-gradient(circle at top left, rgba(0, 188, 212, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at bottom right, rgba(230, 238, 248, 0.03) 0%, transparent 50%);
+}
+
+.sidebar {
+    width: 250px;
+    /* Make it slightly wider */
+    background: var(--panel);
+    padding: 24px 16px;
+    /* Increased top/bottom padding */
+    display: flex;
+    flex-direction: column;
+    /* Subtle inner shadow for separation */
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.brand {
+    font-weight: 800;
+    /* Bolder font weight */
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+}
+
+.conversations {
+    /* Style for the "New Conversation" button */
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: rgba(0, 188, 212, 0.1);
+    color: var(--accent);
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.1s ease;
+    border: 1px solid rgba(0, 188, 212, 0.3);
+    text-align: center;
+}
+
+.conversations:hover {
+    background: rgba(0, 188, 212, 0.2);
+    /* Subtle lift effect */
+    transform: translateY(-1px);
+}
+
+/* Update header border */
+.header {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    /* Use Y for vertical scroll */
+    padding: 24px;
+    /* Increased padding */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* Increased gap */
+    /* Custom scrollbar style for modern feel (optional, depends on browser support) */
+    /* Add scroll-behavior: smooth to the Angular component for smoother scrolling */
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    /* Align items at the top */
+    gap: 12px;
+}
+
+.message.user {
+    justify-content: flex-end;
+}
+
+/* Add an avatar for context */
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    /* You would typically use an image or an icon here */
+    background: #4f46e5;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    flex-shrink: 0;
+    /* Prevents avatar from shrinking */
+}
+
+/* Bot avatar style */
+.message.bot .avatar {
+    background: var(--accent);
+    color: var(--bg-primary);
+}
+
+/* Hide avatar on user message when justified to the right */
+.message.user .avatar {
+    order: 2;
+    /* Move avatar to the right of the bubble */
+}
+
+.bubble {
+    max-width: 70%;
+    /* Reduced max-width for cleaner look */
+    padding: 14px 18px;
+    border-radius: 18px;
+    /* More rounded corners */
+    white-space: pre-wrap;
+    line-height: 1.5;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow for lift */
+    transition: all 0.3s ease;
+}
+
+.bubble.user {
+    /* User bubbles often need less harsh colors */
+    background: var(--accent);
+    color: var(--bg-primary);
+    border-bottom-right-radius: 6px;
+    /* Slightly less aggressive flat corner */
+}
+
+.bubble.bot {
+    /* Glassmorphism for Bot bubble */
+    background: rgba(14, 24, 44, 0.6);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    /* The glass effect */
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom-left-radius: 6px;
+}
+
+.streaming {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 10px;
+    font-style: italic;
+    /* Add a subtle pulsating animation to "Streaming..." */
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+.input-area {
+    display: flex;
+    padding: 16px 24px;
+    /* Increased padding */
+    border-top: none;
+    /* Remove harsh top border */
+    gap: 12px;
+    /* Make the area look like it's floating above the background */
+    background: var(--bg-primary);
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.input-area input {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 12px;
+    /* More rounded input */
+    border: 2px solid #1e293b;
+    /* Subtle border for focus */
+    background: #1e293b;
+    color: #fff;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-area input:focus {
+    outline: none;
+    border-color: var(--accent);
+    /* Accent border on focus */
+    box-shadow: 0 0 0 2px rgba(0, 188, 212, 0.3);
+}
+
+.input-area button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    background: var(--accent);
+    color: var(--bg-primary);
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.input-area button:hover:not([disabled]) {
+    background: #00e5ff;
+    /* Slightly lighter accent on hover */
+    transform: translateY(-1px);
+}
+
+.input-area button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
