@@ -23,16 +23,32 @@ body {
         radial-gradient(circle at bottom right, rgba(230, 238, 248, 0.03) 0%, transparent 50%);
 }
 
+.app {
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    height: 100vh;
+    overflow: auto;
+}
+
 .sidebar {
-    width: 250px;
+    width: var(--sidebar-width);
     /* Make it slightly wider */
     background: var(--panel);
     padding: 24px 16px;
     /* Increased top/bottom padding */
     display: flex;
+    height: 100%;
     flex-direction: column;
     /* Subtle inner shadow for separation */
     box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
 }
 
 .brand {
@@ -182,14 +198,18 @@ body {
 
 .input-area {
     display: flex;
-    padding: 16px 24px;
-    /* Increased padding */
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 16px 10px;
     border-top: none;
-    /* Remove harsh top border */
-    gap: 12px;
-    /* Make the area look like it's floating above the background */
+    gap: 15px;
     background: var(--bg-primary);
-    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4);
+    /* box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4); */
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    width: calc(100% - var(--sidebar-width) - 20px);
 }
 
 .input-area input {
